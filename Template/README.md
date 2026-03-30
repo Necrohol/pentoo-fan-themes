@@ -1,4 +1,5 @@
-# Copyright 2026 Pentoo Project / LWIS LLC
+# Copyright 2026 Pentoo Project / Necrohol 
+# Distributed under the terms
 # Distributed under the terms of the GNU General Public License v2
 # Documentation and metadata: CC BY-SA 4.0
 
