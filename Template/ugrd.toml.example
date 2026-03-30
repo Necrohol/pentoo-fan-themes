@@ -1,0 +1,24 @@
+# Pentoo Plymouth Theme — ugrd example config
+# Copy to /etc/ugrd/ugrd.toml and adjust as needed
+
+[plymouth]
+enabled = true
+
+# Theme name must match directory under:
+# /usr/share/plymouth/themes/
+theme = "pentoo"
+
+# Optional fallback theme
+fallback = "text"
+
+# Include full theme directory in initramfs
+# (important for animated themes with assets)
+include = [
+  "/usr/share/plymouth/themes/pentoo"
+]
+
+# Optional: force splash display
+show_delay = 0
+
+# Debugging (optional)
+debug = false
