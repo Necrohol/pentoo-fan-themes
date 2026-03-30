@@ -1,0 +1,118 @@
+# Copyright 2026 Pentoo Project / LWIS LLC
+# Distributed under the terms of the GNU General Public License v2
+# Documentation and metadata: CC BY-SA 4.0
+
+EAPI=8
+
+inherit git-r3
+RESTRICT="strip"
+
+DESCRIPTION="Pentoo Plymouth Theme — Future Template Skeleton"
+HOMEPAGE="https://github.com/Necrohol/pentoo-future-template"
+EGIT_REPO_URI="https://github.com/Necrohol/pentoo-future-template.git"
+EGIT_BRANCH="master"
+
+LICENSE="GPL-2 Artistic-2 CC-BY-SA-4.0"
+SLOT="0"
+KEYWORDS=""
+IUSE="dracut genkernel ugrd tools"
+
+REQUIRED_USE="?? ( dracut genkernel ugrd )"
+
+# Core runtime dependencies
+RDEPEND="
+	sys-boot/plymouth
+	dracut? (
+		|| ( sys-kernel/dracut sys-kernel/dracut-ng )
+	)
+	genkernel? ( sys-kernel/genkernel )
+	ugrd? ( sys-kernel/ugrd )
+	tools? (
+		dev-python/pillow
+		media-video/ffmpeg
+	)
+"
+
+# Build-time / optional tools
+BDEPEND="
+	tools? (
+		${PYTHON_DEPS}
+		$(python_gen_cond_dep '
+			dev-python/pillow[${PYTHON_USEDEP}]
+		')
+	)
+"
+
+# Repo layout assumed:
+#   conf/                  - configs or examples (plymouthd.conf.example, ugrd.toml.example)
+#   docs/                  - README.md, LICENSE
+#   sources/               - mp4 files for theme animations
+#   sources/preview/       - PNG frames for README previews
+#   plymouth/              - actual theme assets (*.plymouth, plymouth.script)
+#   tools/                 - Python/Bash/JS scripts for compositing, building, etc.
+
+src_install() {
+	local theme_dir="/usr/share/plymouth/themes/${PN}"
+
+	# 1️⃣ Install Plymouth theme assets
+	insinto "${theme_dir}"
+	doins -r "${S}"/plymouth/*
+
+	# 2️⃣ Install Python/Bash/JS tools
+	exeinto "${theme_dir}/tools"
+	doexe "${S}"/tools/*
+
+	# 3️⃣ Install documentation
+	dodoc "${S}"/docs/README.md
+	insinto /usr/share/doc/${PF}
+	doins "${S}/docs/LICENSE"
+
+	# 4️⃣ Install config examples
+	if [[ -d "${S}/conf" ]]; then
+		insinto /usr/share/doc/${PF}
+		doins "${S}/conf"/*
+	fi
+
+	# 5️⃣ Install sources & previews
+	insinto "${theme_dir}/sources"
+	doins -r "${S}/sources"/*
+
+	# Symlink PNGs for README previews
+	keepdir "${theme_dir}/sources/preview"
+	shopt -s nullglob
+	for f in "${ED}${theme_dir}/sources"/*.png; do
+		local fname=$(basename "${f}")
+		dosym "../${fname}" "${theme_dir}/sources/preview/${fname}"
+	done
+	shopt -u nullglob
+}
+
+pkg_postinst() {
+	elog ""
+	elog "================================================"
+	elog " Pentoo Plymouth Theme — Future Template"
+	elog "================================================"
+	elog ""
+	elog "Theme installed to /usr/share/plymouth/themes/${PN}"
+	elog ""
+	elog "--- Recommended: activate theme & rebuild initramfs ---"
+	elog "  plymouth-set-default-theme -R ${PN}"
+	elog ""
+	elog "--- Kernel/initramfs integration ---"
+	if use dracut; then
+		elog "Dracut/dracut-ng: rebuild initramfs automatically on next kernel install."
+	fi
+	if use genkernel; then
+		elog "Genkernel: rebuild initramfs with genkernel --install initramfs"
+	fi
+	elog ""
+	elog "--- Test without rebooting ---"
+	elog "  plymouthd --debug --attach-to-session"
+	elog "  plymouth show-splash"
+	elog "  sleep 5 && plymouth quit"
+	elog ""
+
+	if [[ -f /proc/cmdline ]] && ! grep -q "splash" /proc/cmdline; then
+		ewarn "WARNING: 'splash' missing from current boot cmdline!"
+	fi
+}
