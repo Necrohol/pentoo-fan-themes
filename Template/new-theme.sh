@@ -93,7 +93,9 @@ Edit assets in:
 - tools/
 
 ## Build
-python3 package_plymouth_theme.py
+#python3 package_plymouth_theme.py
+echo "🧪 Adding sample package_plymouth_theme.py..."
+
 
 ## Install
 ./install_plymouth_theme.sh ${THEME_NAME}
