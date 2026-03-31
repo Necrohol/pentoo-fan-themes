@@ -1,11 +1,27 @@
-[shatter_impact]
-image = "1774933830914.jpeg"
-# Targeting the Bank of America Plaza (The Blue Outline Tower)
-x_percent = 0.18        # Far left side
-y_percent = 0.40        # Upper-mid hit
+[remote_assets]
+url = "https://images.unsplash.com/photo-1578234467412-b0bbdb4c2283"
+local_name = "dallas_skyline_4k.jpg"
+hash_verify = "SHA256_SUM_HERE" # Security first for Pentoo
 
-[color_override]
-# Replace those blue building LEDs with Pentoo Green for the "Hack"
-target_color = "#0000FF" 
-replacement_color = "#00FF00"
-fuzz_factor = 20        # Catch similar blue shades
+[vfx_mapping]
+# Target the "Green Building" for the initial crack
+impact_x = 0.22         
+impact_y = 0.45
+# Target the Reunion Tower (the Ball) for a secondary "EMP" pulse
+pulse_center = [0.85, 0.55]
+
+[source]
+background = "dallas_unsplash_4k.jpg"
+mascot = "ronin_tux_hog.png" # Rendered from your POV-Ray script
+
+[shatter]
+# Impact on the tall building (Left-Center)
+impact_x = 0.22         
+impact_y = 0.40         
+shard_count = 180       # High detail for 4K
+gravity = 15            # How fast shards fall
+zoom_speed = 1.05       # 5% growth per frame for the 'Push'
+
+[vfx]
+sakura_drift = false    # Add the 🌸 petals behind the glass
+green_pulse = true      # Flash the building green on impact
