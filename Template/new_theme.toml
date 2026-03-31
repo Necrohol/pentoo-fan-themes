@@ -1,0 +1,15 @@
+[theme]
+
+[structure]
+# Folders required to follow the ebuild skeleton
+dirs = ["conf", "docs", "sources/preview", "RESOURCES", "fonts"]
+
+[assets]
+wallpaper = "sources/background.mp4"
+header_config = "header.toml"
+footer_config = "footer.toml"
+
+[plymouth]
+# Variables for the .plymouth and .script files
+module = "script"
+transition = "fade"
