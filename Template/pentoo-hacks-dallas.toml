@@ -1,0 +1,9 @@
+[motorcycle_vfx]
+asset = "tux_on_hog.png"
+start_scale = 0.1        # Tiny in the distance
+end_scale = 1.2          # Larger than the screen at the end
+jump_velocity = 45       # Frames to full screen
+
+[shatter_sync]
+trigger_frame = 30       # Shatter the glass exactly when the front tire hits
+smoke_particles = true   # Burnout smoke behind the bike
