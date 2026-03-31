@@ -1,14 +1,22 @@
 #!/bin/bash
-# Step 2: Render Branding and Composite
+# Step 2: Bridge local TOMLs to the Pro Engine
 
-# 1. Generate Header/Footer PNGs from their respective TOMLs
-python3 gen_assets.py --header header.toml --footer footer.toml
+THEME_NAME=$(grep "name =" new_theme.toml | cut -d'"' -f2)
 
-# 2. Composite onto the Mat
-# Uses offsets defined in the TOMLs (H_Y and F_Y)
+echo "🎨 Calling Pro Engine for rendering..."
+# Assuming your Pro version in Git has a CLI-friendly entry point
+python3 scripts/pro-engine/gen_assets.py \
+    --header header.toml \
+    --footer footer.toml \
+    --output "RESOURCES/"
+
+# Composite onto the final Mat using the Pro-generated PNGs
 convert sources/wallpaper.jpg -resize 1920x1080^ -gravity center -extent 1920x1080 \
-    header_rendered.png -gravity north -geometry +0+150 -composite \
-    footer_rendered.png -gravity south -geometry +0+100 -composite \
-    "$THEME_NAME/RESOURCES/background.png"
+    RESOURCES/header_rendered.png -gravity north -geometry +0+150 -composite \
+    RESOURCES/footer_rendered.png -gravity south -geometry +0+100 -composite \
+    "RESOURCES/background.png"
 
-echo "🖼️  Branded background baked to $THEME_NAME/RESOURCES/"
+# Generate the preview for GitHub/Docs
+convert RESOURCES/background.png -resize 400x300 sources/preview/thumb.png
+
+echo "✅ Branded assets baked into RESOURCES/ for $THEME_NAME"
