@@ -1,0 +1,10 @@
+[prank_vfx]
+# The 'Setup'
+show_bsod = true
+bsod_error_code = "UNEXPECTED_PENTOO_PENETRATION"
+bsod_qr_link = "www.pentoo.ch"
+
+# The 'Punchline'
+samurai_slash = true
+slash_angle = 45          # Diagonal cut
+debris_physics = true    # Bits of the "Blue Screen" fly away
