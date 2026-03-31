@@ -1,0 +1,18 @@
+[target]
+image = "dfw_skyline_4k.png"   # Stored in /sources/
+output_dir = "RESOURCES/frames/shatter/"
+
+[shatter_physics]
+# Coordinates for the 'Initial Breach' (Targeting Reunion Tower)
+impact_x = 2850         
+impact_y = 1080         
+
+# Complexity vs Performance
+shard_count = 150       # High-fidelity for 4K
+jaggedness = 0.85       # 0.0 (Clean) to 1.0 (Sharp Needles)
+shrapnel_speed = 25     # Force of the "Hack" blowing the glass out
+
+[visuals]
+crack_glow = "#00FF00"  # Pentoo Green glow in the cracks
+motion_blur = true      # Add 'juice' to the flying shards
+fade_to_black = false   # Set true if revealing the Reaper/Terminal
