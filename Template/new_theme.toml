@@ -1,6 +1,6 @@
 [theme]
-name = "pentoo-terminator"
-dirs = ["conf", "docs", "sources/preview", "assets/frames"]
+name = "pentoo-new"
+dirs = ["conf", "docs", "sources/preview", "tools"]
 
 [branding]
 header_toml = "header.toml"
