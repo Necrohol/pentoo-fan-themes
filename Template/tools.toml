@@ -1,0 +1,15 @@
+[theme]
+name = "pentoo-neon-lightning"
+version = "1.0"
+
+[remote_assets]
+# The Skeleton for the ebuild
+skel_url = "https://raw.githubusercontent.com/Necrohol/pentoo-fan-themes/main/Template/ebuild.skel"
+# Pentoo Grub Theme base (to be modified)
+grub_theme_url = "https://github.com/pentoo/pentoo-grub-theme/archive/refs/heads/master.tar.gz"
+# Branding Font
+font_url = "https://github.com/Necrohol/pentoo-fonts/raw/main/Deaths%20Hallows.ttf"
+
+[scripts]
+# Users can add custom bash/python snippet URLs here
+extra_fx = "https://raw.githubusercontent.com/user/repo/main/glitch_fx.sh"
