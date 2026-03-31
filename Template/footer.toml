@@ -1,0 +1,9 @@
+[footer]
+primary_text = "WWW.PENTOO.CH"
+secondary_text = "HACK THE PLANET"
+font = "DroidSansMono.ttf"
+size = 30
+y_offset = 120       # Distance from bottom edge
+color = "#00FF00"
+glow_color = "#002200"
+spacing = 10         # Pixels between primary and secondary lines
