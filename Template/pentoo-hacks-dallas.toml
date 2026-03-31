@@ -34,3 +34,14 @@ force_variation = 1.2        # Randomizes shard velocity per boot
 [tux_push]
 lean_angle = "random"        # Tux can lean left/right on the Hog
 motion_blur_intensity = 0.8  # Adds 'Speed' to the jump
+
+[theme_override]
+name = "Dallas-Breach-Ronin"
+enable_sakura = false        # Clean, dark Dallas vibe
+enable_motion_blur = true    # High-octane 'Push' effect
+
+[shatter_physics]
+# Since no petals, we increase shard count for 'Pulverized' glass
+shard_count = 250            
+shard_glow = "#00FF00"       # Pentoo Green light in the cracks
+
