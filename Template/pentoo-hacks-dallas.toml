@@ -1,9 +1,11 @@
-[motorcycle_vfx]
-asset = "tux_on_hog.png"
-start_scale = 0.1        # Tiny in the distance
-end_scale = 1.2          # Larger than the screen at the end
-jump_velocity = 45       # Frames to full screen
+[shatter_impact]
+image = "1774933830914.jpeg"
+# Targeting the Bank of America Plaza (The Blue Outline Tower)
+x_percent = 0.18        # Far left side
+y_percent = 0.40        # Upper-mid hit
 
-[shatter_sync]
-trigger_frame = 30       # Shatter the glass exactly when the front tire hits
-smoke_particles = true   # Burnout smoke behind the bike
+[color_override]
+# Replace those blue building LEDs with Pentoo Green for the "Hack"
+target_color = "#0000FF" 
+replacement_color = "#00FF00"
+fuzz_factor = 20        # Catch similar blue shades
