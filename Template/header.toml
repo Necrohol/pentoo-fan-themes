@@ -1,0 +1,8 @@
+[header]
+text = "PENTOO LINUX"
+font = "Deaths Hallows.ttf"
+size = 95
+y_offset = 150       # Distance from top edge
+color = "#00FF00"    # Pentoo Green
+glow_color = "#004400"
+effect = "neon_burst" # Options: neon, glow, none
