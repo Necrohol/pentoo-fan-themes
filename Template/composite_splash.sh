@@ -1,22 +1,18 @@
 #!/bin/bash
-# Step 2: Bridge local TOMLs to the Pro Engine
+# Pentoo Universal Muxer: The "Director" Script
 
-THEME_NAME=$(grep "name =" new_theme.toml | cut -d'"' -f2)
+# 1. Base Image + Side Panels
+# (Runs your procedural-sidepanels.py based on [side_panels] section)
 
-echo "🎨 Calling Pro Engine for rendering..."
-# Assuming your Pro version in Git has a CLI-friendly entry point
-python3 scripts/pro-engine/gen_assets.py \
-    --header header.toml \
-    --footer footer.toml \
-    --output "RESOURCES/"
+# 2. Check for Custom VFX "Append" Bits
+# We use a simple loop to check the TOML for any 'true' scripts
+VFX_LIST=$(grep -E "sakura_rain|samurai_slash|glass_shatter" screen.toml | grep "true" | cut -d' ' -f1)
 
-# Composite onto the final Mat using the Pro-generated PNGs
-convert sources/wallpaper.jpg -resize 1920x1080^ -gravity center -extent 1920x1080 \
-    RESOURCES/header_rendered.png -gravity north -geometry +0+150 -composite \
-    RESOURCES/footer_rendered.png -gravity south -geometry +0+100 -composite \
-    "RESOURCES/background.png"
+for vfx in $VFX_LIST; do
+    echo "🎬 Activating VFX: $vfx"
+    # Execute the specific py script from the tools/vfx directory
+    python3 "tools/vfx/${vfx//_/-}.py" --input RESOURCES/current_frame.png --out RESOURCES/current_frame.png
+done
 
-# Generate the preview for GitHub/Docs
-convert RESOURCES/background.png -resize 400x300 sources/preview/thumb.png
-
-echo "✅ Branded assets baked into RESOURCES/ for $THEME_NAME"
+# 3. Final Branding (Logo/Text)
+# (Drops the Lock Logo and Header/Footer text on top of the VFX)
