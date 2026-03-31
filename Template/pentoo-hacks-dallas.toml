@@ -25,3 +25,12 @@ zoom_speed = 1.05       # 5% growth per frame for the 'Push'
 [vfx]
 sakura_drift = false    # Add the 🌸 petals behind the glass
 green_pulse = true      # Flash the building green on impact
+[shatter_variety]
+mode = "voronoi_needle"      # Options: needle, chunk, spiderweb
+chaos_factor = 0.4           # 0.0 to 1.0 (Higher = more irregular shards)
+impact_jitter = 50           # Randomly shifts the hit point by 50px
+force_variation = 1.2        # Randomizes shard velocity per boot
+
+[tux_push]
+lean_angle = "random"        # Tux can lean left/right on the Hog
+motion_blur_intensity = 0.8  # Adds 'Speed' to the jump
