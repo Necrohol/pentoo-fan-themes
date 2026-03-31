@@ -8,3 +8,15 @@ bsod_qr_link = "www.pentoo.ch"
 samurai_slash = true
 slash_angle = 45          # Diagonal cut
 debris_physics = true    # Bits of the "Blue Screen" fly away
+
+[katana_slash]
+enabled = true
+rip_jaggedness = 20      # Higher = more "torn" look
+flash_intensity = 1.0    # 0.0 to 1.0 white streak
+reveal_reaper = true     # Reveal the Tux Reaper underneath
+
+[extra_juice]
+anime_speed_lines = true # Radical white streaks on hit
+screen_shake = true      # Impact vibration
+blue_shards = true       # Falling BSOD 'glass' pieces
+
