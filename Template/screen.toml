@@ -1,0 +1,19 @@
+[side_panels]
+style = "binary_rain"    # binary_rain, matrix_rain, hellfire, off
+width = 150
+color = "#00FF00"
+
+[branding]
+lock_logo = true         # Pulls from Pentoo_lock_logo.toml settings
+header_text = "PENTOO ARCHITECT"
+footer_text = "WWW.PENTOO.CH"
+
+[custom_vfx]
+# This is your "Append" section for the 1-offs
+sakura_rain   = true     # Falling petals over the whole screen
+samurai_slash = false    # The BSOD "Slice" animation
+glass_shatter = false    # Debris effect on boot-end
+
+[paths]
+# Where the "One-Off" scripts live
+scripts_dir = "tools/vfx/"
