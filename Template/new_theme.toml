@@ -1,15 +1,11 @@
 [theme]
+name = "pentoo-terminator"
+dirs = ["conf", "docs", "sources/preview", "assets/frames"]
 
-[structure]
-# Folders required to follow the ebuild skeleton
-dirs = ["conf", "docs", "sources/preview", "RESOURCES", "fonts"]
+[branding]
+header_toml = "header.toml"
+footer_toml = "footer.toml"
 
-[assets]
-wallpaper = "sources/background.mp4"
-header_config = "header.toml"
-footer_config = "footer.toml"
-
-[plymouth]
-# Variables for the .plymouth and .script files
-module = "script"
-transition = "fade"
+[build]
+source = "sources/background.mp4"
+mode = "animation" # or static
