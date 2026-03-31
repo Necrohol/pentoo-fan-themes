@@ -1,0 +1,17 @@
+[theme]
+name = "Pentoo-Samurai-Ronin"
+author = "Necrohol"
+version = "2026.1"
+
+[vfx_sequence]
+# 1. Start with the BSOD Prank
+layer_0 = "fake_bsod"
+# 2. Trigger the Slice at 50% boot
+layer_1 = "samurai_slash" 
+# 3. Ambient Sakura petals throughout
+layer_2 = "sakura_rain"
+
+[colors]
+blade_flash = "#E0E0E0"  # Cold Steel White
+petal_color = "#FFB7C5"  # Cherry Blossom Pink
+hud_accent   = "#00FF00" # Classic Pentoo Green
